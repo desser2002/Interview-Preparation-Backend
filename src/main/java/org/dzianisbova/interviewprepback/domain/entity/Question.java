@@ -1,4 +1,4 @@
-package org.dzianisbova.interviewprepback.domain.persistence.entity;
+package org.dzianisbova.interviewprepback.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,6 +24,14 @@ public class Question {
     private Difficulty difficulty;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "topic_id", nullable = false)
-    private Topic topic;
+    @JoinColumn(name = "subtopic_id", nullable = false)
+    private Subtopic subtopic;
+
+    private boolean isCoding;
+
+    public Question(String text, Difficulty difficulty, boolean isCoding) {
+        this.text = text;
+        this.difficulty = difficulty;
+        this.isCoding = isCoding;
+    }
 }

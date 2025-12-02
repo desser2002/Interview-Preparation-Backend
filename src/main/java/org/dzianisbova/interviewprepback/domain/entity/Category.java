@@ -1,4 +1,4 @@
-package org.dzianisbova.interviewprepback.domain.persistence.entity;
+package org.dzianisbova.interviewprepback.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package org.dzianisbova.interviewprepback.domain.persistence.entity;
+package org.dzianisbova.interviewprepback.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,17 +19,21 @@ public class Topic {
     private Long id;
 
     @Column(nullable = false, length = 100)
-    private String name;
+    private String title;
+
+    @Column(nullable = false, length = 15)
+    private String slug;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @OneToMany(mappedBy = "topic_id", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Question> questions = new ArrayList<>();
+    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Subtopic> subtopics = new ArrayList<>();
 
-    public Topic(String name, Category category) {
-        this.name = name;
-        this.category = category;
+    public Topic(Long id, String title, String slug) {
+        this.id = id;
+        this.title = title;
+        this.slug = slug;
     }
 }
